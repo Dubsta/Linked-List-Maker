@@ -41,20 +41,17 @@ void printMenu() {
 	printf("%s\n", "What would you like to do?");
 	printf("%s\n", "1. Add a number to the list");
 	printf("%s\n", "2. Print the list");
-	printf("%s\n", "3. Search the list");
+	//printf("%s\n", "3. Search the list");
 	printf("%s\n", "5. exit");
 
 	return;
 }
 
 int getSingleNum() {
-	// flush stdin
-	int c;
-	while((c = getchar()) != '\n' && c != EOF);
-	// get the num
 	int tmp = getchar();
 	tmp -= '0';
-	// flush stdin again
+	// flush stdin
+	int c;
 	while((c = getchar()) != '\n' && c != EOF);
 	// check input
 	if (tmp < 0 || tmp > 9) {
@@ -83,9 +80,9 @@ void userChoice() {
 			exitProgram();
 			break;
 
-		case 3:
-			search();
-			break;
+		// case 3:
+		// 	search();
+		// 	break;
 
 		default: 
 			printf("%s\n", "Try Again");
@@ -101,7 +98,7 @@ void addItem() {
 		return;
 	}
 	printf("%s\n", "Enter a number to add to list:");
-	scanf("%d", new->val);
+	new->val = getSingleNum();
 	new->next = NULL;
 
 	// Insert new node
