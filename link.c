@@ -105,7 +105,7 @@ void addItem() {
 	if (head != NULL) {new->next = head;}
 	head = new;
 
-	printf("\n%s\n", "done!");
+	printf("%s\n", "done!");
 }
 
 void printList() {
@@ -130,7 +130,26 @@ void printList() {
 }
 
 void search() {
-	return;
+	// Allows user to searh for a nuber in the list
+	// alerts the user to the first match in the list
+	printf("What number are you looking for?\n");
+	int target = getNum();
+	node* crawler = head;
+	int nodeCount = 0;
+
+	if (head == NULL) { printf("The list is empty! No number!\n"); }
+	else {	
+		while (crawler != NULL) {
+			nodeCount++;
+			if (crawler->val == target) {
+				printf("%s%d\n", "Your number was found at node ", nodeCount);
+				return;
+			}
+			else { crawler = crawler->next; }
+		}
+		printf("Number not found.\n");
+		return;
+	}
 }
 
 void exitProgram () {
