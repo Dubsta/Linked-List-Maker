@@ -23,6 +23,7 @@ void exitProgram();
 int getNum();
 void printList();
 void search();
+void delete();
 
 // main3
 int main(int argc, char* argv[])
@@ -46,6 +47,7 @@ void printMenu() {
 	printf("%s\n", "1. Add a number to the list");
 	printf("%s\n", "2. Print the list");
 	printf("%s\n", "3. Search the list");
+	printf("%s\n", "4. Delete a node");
 	printf("%s\n", "5. exit" RESET);
 
 	return;
@@ -83,6 +85,10 @@ void userChoice() {
 		case 3:
 		 	search();
 		 	break;
+
+		case 4:
+			delete();
+			break;
 
 		default: 
 			printf("%s\n", "Try Again");
@@ -151,6 +157,11 @@ void search() {
 		return;
 	}
 }
+
+void delete() {
+	return;
+}
+
 
 void exitProgram () {
 	printf("%s\n", "See you later!");
