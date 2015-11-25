@@ -45,7 +45,7 @@ void printMenu() {
 	printf(KYEL "%s\n", "What would you like to do?");
 	printf("%s\n", "1. Add a number to the list");
 	printf("%s\n", "2. Print the list");
-	//printf("%s\n", "3. Search the list");
+	printf("%s\n", "3. Search the list");
 	printf("%s\n", "5. exit" RESET);
 
 	return;
@@ -80,9 +80,9 @@ void userChoice() {
 			exitProgram();
 			break;
 
-		// case 3:
-		// 	search();
-		// 	break;
+		case 3:
+		 	search();
+		 	break;
 
 		default: 
 			printf("%s\n", "Try Again");
