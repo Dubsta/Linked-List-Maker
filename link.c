@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define RESET "\033[0m"
+
 // node declaration
 typedef struct node {
 	int val;
@@ -16,7 +20,7 @@ void printMenu();
 void userChoice();
 void addItem();
 void exitProgram();
-int getSingleNum();
+int getNum();
 void printList();
 void search();
 
@@ -38,18 +42,18 @@ int main(int argc, char* argv[])
 void printMenu() {
 	// print out the menu
 	printf("\n");
-	printf("%s\n", "What would you like to do?");
+	printf(KYEL "%s\n", "What would you like to do?");
 	printf("%s\n", "1. Add a number to the list");
 	printf("%s\n", "2. Print the list");
 	//printf("%s\n", "3. Search the list");
-	printf("%s\n", "5. exit");
+	printf("%s\n", "5. exit" RESET);
 
 	return;
 }
 
-int getSingleNum() {
+int getNum() {
 	int temp;
-  	printf ("Input your number: ");
+  	printf (KBLU "Input your number: " RESET);
   	while (scanf("%d", &temp) != 1) {
     	while (getchar() != '\n');
     	printf ("Try again: ");
@@ -58,7 +62,7 @@ int getSingleNum() {
 }
 
 void userChoice() {
-	int input = getSingleNum();
+	int input = getNum();
 	printf("\n");
 	
 	// check input
@@ -94,7 +98,7 @@ void addItem() {
 		return;
 	}
 	printf("%s\n", "Enter a number to add to list:");
-	new->val = getSingleNum();
+	new->val = getNum();
 	new->next = NULL;
 
 	// Insert new node
