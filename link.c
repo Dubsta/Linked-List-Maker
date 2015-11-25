@@ -174,7 +174,19 @@ void delete() {
 			return delete();
 		}
 		node* crawler = head;
-		int nodeCount = 0;
+		for (int nodeCount = 0; nodeCount < target - 1; nodeCount++){
+			if (crawler == NULL){
+				printf("That node doesn't exist!\n");
+				return;
+			}
+			crawler = crawler->next;
+		}
+		node* keep = crawler;
+		node* toDelete = crawler->next;
+		keep->next = toDelete->next;
+		free(toDelete);
+		printf("Deleted!\n");	
+
 		return;
 	}
 }
