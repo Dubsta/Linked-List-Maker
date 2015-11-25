@@ -48,17 +48,13 @@ void printMenu() {
 }
 
 int getSingleNum() {
-	int tmp = getchar();
-	tmp -= '0';
-	// flush stdin
-	int c;
-	while((c = getchar()) != '\n' && c != EOF);
-	// check input
-	if (tmp < 0 || tmp > 9) {
-		printf("\n%s\n", "Please enter a number");
-		return getSingleNum();
-	}
-	return tmp;
+	int temp;
+  	printf ("Input your number: ");
+  	while (scanf("%d", &temp) != 1) {
+    	while (getchar() != '\n');
+    	printf ("Try again: ");
+  	}
+	return temp;
 }
 
 void userChoice() {
