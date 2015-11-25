@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Color Stuff
 #define KYEL  "\x1B[33m"
 #define KBLU  "\x1B[34m"
 #define RESET "\033[0m"
@@ -23,9 +24,10 @@ void exitProgram();
 int getNum();
 void printList();
 void search();
-void delete();
+void deleteValue();
+node* deleteByVal(node* ptr, int target);
 
-// main3
+// main
 int main(int argc, char* argv[])
 {
     printf("\n%s\n", "Welcome to linked lists!");
@@ -47,8 +49,8 @@ void printMenu() {
 	printf("%s\n", "1. Add a number to the list");
 	printf("%s\n", "2. Print the list");
 	printf("%s\n", "3. Search the list");
-	printf("%s\n", "4. Delete a node");
-	printf("%s\n", "5. exit" RESET);
+	printf("%s\n", "4. Delete a value from the list");
+	printf("%s\n", "5. Exit" RESET);
 
 	return;
 }
@@ -87,7 +89,7 @@ void userChoice() {
 		 	break;
 
 		case 4:
-			delete();
+			deleteValue();
 			break;
 
 		default: 
@@ -160,35 +162,45 @@ void search() {
 	}
 }
 
-void delete() {
-	// Delete a node specified by the user
+void deleteValue() {
+	// Delete a value specified by the user
+	// Requires following deleteByVal()
 	if (head == NULL) {
 		printf("The list is empty! No nodes to delete!\n");
 		return;
 	}
 	else{
-		printf("What number node do you want to delete?\n");
+		printf("What value do you want to delete?\n");
 		int target = getNum();
-		if (target <= 0) {
-			printf("%s\n", "Enter a node number starting from 1");
-			return delete();
-		}
-		node* crawler = head;
-		for (int nodeCount = 0; nodeCount < target - 1; nodeCount++){
-			if (crawler == NULL){
-				printf("That node doesn't exist!\n");
-				return;
-			}
-			crawler = crawler->next;
-		}
-		node* keep = crawler;
-		node* toDelete = crawler->next;
-		keep->next = toDelete->next;
-		free(toDelete);
-		printf("Deleted!\n");	
+
+		head = deleteByVal(head, target);
 
 		return;
 	}
+}
+
+node* deleteByVal(node* ptr, int target) {
+	// inspiration from www.cs.bu.edu/teaching/c/linked-list/delete/
+
+	// base case: end of list
+	if (ptr == NULL) {
+		// end of list
+		printf("That value doesn't exist\n");
+		return NULL;
+	}
+
+	// base case: value found
+	if (ptr->val == target) {
+		node* temp = ptr->next;
+		free(ptr);
+		printf("Deleted!\n");
+		return temp;
+	}
+
+	// Recursive call
+	ptr->next = deleteByVal(ptr->next, target);
+
+	return ptr;
 }
 
 
