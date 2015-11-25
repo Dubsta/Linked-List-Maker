@@ -138,13 +138,15 @@ void printList() {
 void search() {
 	// Allows user to searh for a nuber in the list
 	// alerts the user to the first match in the list
-	printf("What number are you looking for?\n");
-	int target = getNum();
-	node* crawler = head;
-	int nodeCount = 0;
-
-	if (head == NULL) { printf("The list is empty! No number!\n"); }
-	else {	
+	if (head == NULL) {
+		printf("The list is empty! Nothing to search!\n");
+		return;
+	}
+	else {
+		printf("What number are you looking for?\n");
+		int target = getNum();
+		node* crawler = head;
+		int nodeCount = 0;	
 		while (crawler != NULL) {
 			nodeCount++;
 			if (crawler->val == target) {
@@ -159,7 +161,22 @@ void search() {
 }
 
 void delete() {
-	return;
+	// Delete a node specified by the user
+	if (head == NULL) {
+		printf("The list is empty! No nodes to delete!\n");
+		return;
+	}
+	else{
+		printf("What number node do you want to delete?\n");
+		int target = getNum();
+		if (target <= 0) {
+			printf("%s\n", "Enter a node number starting from 1");
+			return delete();
+		}
+		node* crawler = head;
+		int nodeCount = 0;
+		return;
+	}
 }
 
 
